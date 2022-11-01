@@ -3,11 +3,11 @@ import "dotenv/config";
 import bodyParser from "body-parser";
 // import route from "./routes/index";
 import mongoose from "mongoose";
-import router from "./routes/UserRouter";
+import index from "../src/routes/index";
 
 const App = express();
 App.use(bodyParser.json());
-App.use("/", router);
+App.use("/", index);
 
 const database = process.env.DATABASE;
 mongoose
