@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const TransactionSchema = new mongoose.Schema(
+const WalletSchema = new mongoose.Schema(
   {
     PaymentId: {
         type:mongoose.Schema.Types.ObjectId,
@@ -31,6 +31,6 @@ const TransactionSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-const Type= mongoose.model("Type", TransactionSchema);
+const Trans= mongoose.model("type", WalletSchema);
 
-export default Type;
+export default Trans;
