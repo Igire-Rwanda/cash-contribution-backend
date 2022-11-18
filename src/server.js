@@ -4,8 +4,10 @@ import bodyParser from "body-parser";
 // import route from "./routes/index";
 import mongoose from "mongoose";
 import index from "../src/routes/index";
+import cors from "cors";
 
 const App = express();
+App.use(cors());
 App.use(bodyParser.json());
 App.use("/", index);
 
@@ -17,7 +19,7 @@ mongoose
     console.log("Database is well connected!");
 });
  
-const port = process.env.PORT || 4040;
+const port = process.env.PORT || 2000;
 App.listen (port,() =>{
     console.log (`server is running on port ${port}`)
 }
