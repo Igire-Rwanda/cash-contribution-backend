@@ -37,7 +37,8 @@
     "http-status": "^1.5.3",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.5.0",
-    "nodemailer": "^6.7.8",
+    "node-cron": "^3.0.2",
+    "nodemailer": "^6.8.0",
     "nodemon": "^2.0.19",
     "register": "^0.0.0"
   }

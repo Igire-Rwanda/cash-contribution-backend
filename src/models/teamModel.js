@@ -12,26 +12,18 @@ const TeamSchema = new mongoose.Schema(
       type:mongoose.SchemaTypes.ObjectId,
       ref:"TeamId"
     },
-   Duration: {
-    startAt:Date,
-    endAt:Date,
-
-   },
-   status:{
-    type:String,
-    enum:["pending","accept","cancel"],
-    default:"pending"
-   },
+  
+  //  status:{
+  //   type:String,
+  //   enum:["pending","accept","cancel"],
+  //   default:"accept"
+  //  },
     DescriptionTeam: {
       type:String,
-      enum:["balance"],
-      default:"balance"
-
     },
     walletBalance: {
-      type:String,
-      enum:["balance","account","mobilemoney"],
-      default:"account"
+      type:Number,
+      default:"0"
     },
     isActive: {
       type:Boolean,
