@@ -5,8 +5,13 @@ const cron = require('node-cron');
 
 
 const settings = {
-    MINUTE:"* * * * *"
+    MINUTE:"* * * * * ",
+    TWoMINUTES:"*/2 * * * *",
+    Hour:"* */1 * * *",
+    Month:"* * */1 * *",
+    every:"0 8 */1 */1 1,6",
 }
+
 
 
 export const createteam =  async(req,res,next)=> {
@@ -19,7 +24,7 @@ export const createteam =  async(req,res,next)=> {
         }
 
         cron.schedule(settings[req.body.settings], () => {
-            console.log('running a task every minute');
+            console.log('contibute every minute');
         });
 
         return res.status(201).json({message:"sucessfully", data:doc});
