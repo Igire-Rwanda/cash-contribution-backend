@@ -1,17 +1,20 @@
 import { Router } from "express";
-import  UserController from "../controller/UserController";
-import { checkUser } from "../middleWares/checkUserExist";
+import UserController from "../controller/UserController";
+import { checkUser, loginUser } from "../middleWares/checkUserExist";
 import { verifyUserToken } from "../middleWares/verifyToken";
-const router =  Router();
-//router.use(verifyUserToken)
-router
-.route("/")
-.post(checkUser,UserController.createUser)
-.get(UserController.getAllUser);
+const route = Router();
 
-router
-.route("/:id")
-.put(UserController.UpdateOneUser)
-.get(UserController.getOneUser)
-.delete(UserController.deleteOneUser);
-export default router;
+route.post("/login", loginUser);
+//router.use(verifyUserToken)
+route
+    .route("/")
+    .post(checkUser, UserController.createUser)
+    .get(UserController.getAllUser);
+
+route
+    .route("/:id")
+    .put(UserController.UpdateOneUser)
+    .get(UserController.getOneUser)
+    .delete(UserController.deleteOneUser);
+
+export default route;

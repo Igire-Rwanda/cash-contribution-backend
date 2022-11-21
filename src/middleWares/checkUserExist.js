@@ -3,6 +3,8 @@ import { hashPassword, isPasswordMatching } from "../utils/hashPassword";
 import Response from "../utils/Response";
 import status from "http-status";
 import { generateToken } from "../utils/token";
+
+
 export const checkUser = async (req, res, next) => {
   let { email, password} = req.body;
   const user = await UserModel.findOne({ email });
@@ -10,7 +12,7 @@ export const checkUser = async (req, res, next) => {
     req.body.password = hashPassword(password);
     return next();
   }
-  return Response.errorMessage(res, "user is arleady exist", status.CONFLICT);
+  return Response.errorMessage(res, "user already exist", status.CONFLICT);
 };
 
 export const loginUser = async (req, res) => {
@@ -19,7 +21,7 @@ export const loginUser = async (req, res) => {
   if (!user) {
     return Response.errorMessage(
       res,
-      "user/email is not exist",
+      "user/email  not exist",
       status.NOT_FOUND
     );
   }
