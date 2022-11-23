@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+const joi = require('joi')
 
 const UserSchema = new mongoose.Schema(
   {
@@ -10,10 +11,12 @@ const UserSchema = new mongoose.Schema(
 
       phone: {type:String}, 
     password: {type: String},
-    address: { 
-      state: String, 
-      city: String },
      
+    isActive: {
+      type:Boolean,
+      default:true,
+
+    },
 
     role: { type: String, enum: ["user", "userManager","admin"], default: "user" },
 
@@ -21,7 +24,17 @@ const UserSchema = new mongoose.Schema(
   },
   { timestamps: true }
 );
+export default mongoose.model('user',UserSchema)
 
-const User= mongoose.model("user", UserSchema);
-
-export default User;
+// const User= mongoose.model("user", UserSchema);
+// const validate = (user)=>{
+//   const UserSchema = joi.object({
+//     names:joi.string().required(),
+//     email:joi.string().email().required(),
+//     phone:joi.string().required(),
+//     password:joi.string().required()
+//   })
+//   return UserSchema.validate(user)
+// }
+// module.exports={User,validate}
+// export default User;

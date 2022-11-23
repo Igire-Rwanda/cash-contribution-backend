@@ -35,6 +35,7 @@
     "express": "^4.18.2",
     "express-validator": "^6.14.2",
     "http-status": "^1.5.3",
+    "joi": "^17.7.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.5.0",
     "node-cron": "^3.0.2",
