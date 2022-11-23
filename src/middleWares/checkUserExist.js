@@ -2,7 +2,7 @@ import UserModel from "../models/userModel";
 import { hashPassword, isPasswordMatching } from "../utils/hashPassword";
 import Response from "../utils/Response";
 import status from "http-status";
-import { generateToken } from "../utils/token";
+import  generateToken from "../utils/token";
 
 
 export const checkUser = async (req, res, next) => {
@@ -27,7 +27,7 @@ export const loginUser = async (req, res) => {
   }
   if (isPasswordMatching(password, user.password)) {
     user.password = null;
-    const token = generateToken({ user });
+    const token = generateToken.generaToken({ user });
     return Response.succesMessage(
       res,
       "Successfully logged in",
