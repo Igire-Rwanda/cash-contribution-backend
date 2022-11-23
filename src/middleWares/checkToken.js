@@ -1,11 +1,12 @@
 
 import jwt from 'jsonwebtoken'
+import "dotenv/config"
 
 const checkToken = (req,res,next)=>{
     try {
     const authorization = req.headers['authorization'];
     if(authorization){
-        const tokenvalid = jwt.verify(authorization,"ooooooooooooo");
+        const tokenvalid = jwt.verify(authorization,process.env.JWT_KEY);
         req.userId=tokenvalid.user._id;
         next();
     }else{
