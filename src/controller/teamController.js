@@ -1,8 +1,10 @@
 import teamModel from "../models/teamModel";
 import handleCRUD from "../utils/handleCRUD";
-import jwt from 'jsonwebtoken';
+import Participant from "../models/participants";
+import Team from "../models/teamModel";
 
 const cron = require('node-cron');
+
 
 
 const settings = {
@@ -17,13 +19,7 @@ export const createteam =  async(req,res,next)=> {
 
 
     
-
-    
     try{
-
-
-
-
 
 
         req.body.TeamAdmin=req.userId;
@@ -31,6 +27,14 @@ export const createteam =  async(req,res,next)=> {
         if(!doc){
             return res.status(400).json({message:"failed to register"});
         }
+          const  teamMember = new Participant({
+            TeamId:doc._id,
+            UserId:req.userId
+           });
+
+           teamMember.save();
+
+
 
         cron.schedule(settings[req.body.settings], () => {
             console.log('contibute every minute');
@@ -46,6 +50,11 @@ export const createteam =  async(req,res,next)=> {
 }
 const getAllteam = handleCRUD.getAll(teamModel);
 const UpdateOneteam = handleCRUD.updateOneById (teamModel);
-const getOneteam = handleCRUD.getOneById (teamModel);
+const getOneteam = async(req,res)=>{
+const  getOneById = await Team.findById(req.params.id)
+return res.status(200).send(getOneById)
+};
+
+//const getOneteam = handleCRUD.getOneById (teamModel);
 const deleteOneteam = handleCRUD.deleteOneById (teamModel);
  export default {createteam,getAllteam, UpdateOneteam,UpdateOneteam,getOneteam,deleteOneteam }

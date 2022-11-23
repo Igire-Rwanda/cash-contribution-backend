@@ -5,11 +5,11 @@ const participantSchema = new mongoose.Schema(
 
     TeamId: {
       type:mongoose.Schema.Types.ObjectId,
-      ref:"TeamId"
+      ref:"Team"
     },
     UserId: {
       type:mongoose.Schema.Types.ObjectId,
-      ref:"UserId"
+      ref:"user"
     },
     isActive: { 
       type: Boolean, 
@@ -18,6 +18,6 @@ const participantSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-const participant= mongoose.model("Type", participantSchema);
+const participant= mongoose.model("teamMembers", participantSchema);
 
 export default participant;
