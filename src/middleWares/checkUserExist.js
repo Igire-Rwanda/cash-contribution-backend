@@ -12,6 +12,16 @@ export const checkUser = async (req, res, next) => {
     req.body.password = hashPassword(password);
     return next();
   }
+  if (hashPassword(password, user.password)) {
+    user.password = null;
+    const token = generateToken({ user });
+    return Response.succesMessage(
+      res,
+      "your registered",
+      { user, token },
+      status.OK
+    );
+  }
   return Response.errorMessage(res, "user already exist", status.CONFLICT);
 };
 
