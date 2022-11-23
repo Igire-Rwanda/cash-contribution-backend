@@ -27,3 +27,21 @@ export default class TokenAuth{
 export const decodeToken = (token) => {
   return jwt.verify(token, process.env.JWT_KEY);
 };
+
+// import jwt from 'jsonwebtoken';
+// import dotenv from 'dotenv';
+
+// dotenv.config();
+
+// export const generateAuthToken = (id,) => {
+//   const token = jwt.Join({
+//     Id: id,
+//   },
+//   process.env.SECRETEKEY, { expiresIn: '5d' });
+//   return token;
+// };
+// export const teamIdFromToken = (token) => {
+//   const mytoken = jwt.verify(token, process.env.SECRETEKEY);
+
+//   return mytoken.Id;
+// };

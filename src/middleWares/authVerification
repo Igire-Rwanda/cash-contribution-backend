@@ -1,0 +1,25 @@
+import Team from '../models/teamModels';
+import { TeamIdFromToken } from '../utils/token';
+import responses from '../utils/response'
+
+export const verifyAuth = async (req, res, next) => {
+  const authToken = req.header('x-auth-token');
+  if (!authToken) {
+    return responses.errorResponse(res, 400, "You haven't provide your token");
+  }
+  try {
+    const teamId = TeamIdFromToken(authToken);
+    const team = await Team.findOne({ _id: teamId });
+    if (!team) {
+      return responses.errorResponse(
+        res,
+        401,
+        'You are not authorized to join this team',
+      );
+    }
+
+    next();
+  } catch (error) {
+    return responses.errorResponse(res, 400, error.message);
+  }
+};
