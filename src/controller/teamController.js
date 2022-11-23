@@ -1,5 +1,6 @@
 import teamModel from "../models/teamModel";
 import handleCRUD from "../utils/handleCRUD";
+import jwt from 'jsonwebtoken';
 
 const cron = require('node-cron');
 
@@ -12,12 +13,20 @@ const settings = {
     every:"0 8 */1 */1 1,6",
 }
 
-
-
 export const createteam =  async(req,res,next)=> {
+
+
     
+
     
     try{
+
+
+
+
+
+
+        req.body.TeamAdmin=req.userId;
         const doc  = await teamModel.create(req.body);
         if(!doc){
             return res.status(400).json({message:"failed to register"});
@@ -31,6 +40,7 @@ export const createteam =  async(req,res,next)=> {
     }
     catch (error){
         console.log(error)
+        return res.status(500).json({message:error.message});
 
     }
 }
