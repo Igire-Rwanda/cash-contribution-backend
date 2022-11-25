@@ -53,7 +53,10 @@ export const createteam =  async(req,res,next)=> {
 
     }
 }
-const getAllteam = handleCRUD.getAll(teamModel);
+const getAllteam = async(req,res) => {
+const getAll= await Participant.find({UserId:req.userId}).populate("TeamId","TeamName");
+return res.status(200).send(getAll);
+}
 const UpdateOneteam = handleCRUD.updateOneById (teamModel);
 const getOneteam = handleCRUD.getOneById (teamModel);
 const deleteOneteam = handleCRUD.deleteOneById (teamModel);
