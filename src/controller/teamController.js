@@ -1,6 +1,7 @@
 import teamModel from "../models/teamModel";
 import handleCRUD from "../utils/handleCRUD";
 import jwt from 'jsonwebtoken';
+import Participant from "../models/participants";
 
 const cron = require('node-cron');
 
@@ -45,7 +46,7 @@ return res.status(200).send(getAll);
 }
 const UpdateOneteam = handleCRUD.updateOneById (teamModel);
 const getOneteam = async(req,res)=>{
-const  getOneById = await Team.findById(req.params.id)
+const  getOneById = await Participant.find({TeamId:req.params.id}).populate("UserId");
 return res.status(200).send(getOneById)
 };
 
