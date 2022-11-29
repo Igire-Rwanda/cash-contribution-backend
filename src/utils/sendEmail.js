@@ -1,6 +1,6 @@
 import nodemailer from 'nodemailer'
 
-const sendEmail=(receiver,message)=>{
+export const sendEmail=(receiver,message)=>{
 
     let emailtransporter = nodemailer.createTransport({
         service:"gmail",
@@ -23,3 +23,6 @@ const sendEmail=(receiver,message)=>{
         }
     })
 }
+
+
+// export default sendEmail;
