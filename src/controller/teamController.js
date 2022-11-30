@@ -1,9 +1,11 @@
 import teamModel from "../models/teamModel";
 import handleCRUD from "../utils/handleCRUD";
 import Participant from "../models/participants";
-
+import Team from "../models/teamModel";
+import jwt from 'jsonwebtoken';
 
 const cron = require('node-cron');
+
 
 
 const settings = {
@@ -18,13 +20,7 @@ export const createteam =  async(req,res,next)=> {
 
 
     
-
-    
     try{
-
-
-
-
 
 
         req.body.TeamAdmin=req.userId;
@@ -53,8 +49,16 @@ export const createteam =  async(req,res,next)=> {
 
     }
 }
-const getAllteam = handleCRUD.getAll(teamModel);
+const getAllteam = async(req,res) => {
+    const getAll= await Participant.find({UserId:req.userId}).populate("TeamId","TeamName");
+    return res.status(200).send(getAll);
+    }
 const UpdateOneteam = handleCRUD.updateOneById (teamModel);
-const getOneteam = handleCRUD.getOneById (teamModel);
+const getOneteam = async(req,res)=>{
+const  getOneById = await Participant.find({TeamId:req.params.id}).populate("UserId");
+return res.status(200).send(getOneById)
+};
+
+//const getOneteam = handleCRUD.getOneById (teamModel);
 const deleteOneteam = handleCRUD.deleteOneById (teamModel);
  export default {createteam,getAllteam, UpdateOneteam,UpdateOneteam,getOneteam,deleteOneteam }
