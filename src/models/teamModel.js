@@ -25,6 +25,9 @@ const TeamSchema = new mongoose.Schema(
       type:Number,
       default:"0"
     },
+    amount:{
+        type:String,
+    },
     isActive: {
       type:Boolean,
       default:true,
