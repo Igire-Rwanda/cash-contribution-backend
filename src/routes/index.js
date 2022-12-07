@@ -12,6 +12,7 @@ const router = Router();
  router.use("/api/password-reset",passwordReset)
 router.use('/user',userRouter);
 router.use('/team',teamRouter);
+router.use('/teams',teamRouter);
 router.use('/type',teamtypeRouter);
 router.use('/wallet',walletRouter);
 
