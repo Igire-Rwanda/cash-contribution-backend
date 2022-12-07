@@ -1,10 +1,10 @@
 import teamModel from "../models/teamModel";
 import handleCRUD from "../utils/handleCRUD";
 import Participant from "../models/participants";
-
+import { Jwt } from "jsonwebtoken";
 import user from '../models/userModel';
 import { userIdFromToken } from '../utils/token';
-import jwt from 'jsonwebtoken';
+// import jwt from 'jsonwebtoken';
 
 const cron = require('node-cron');
 
@@ -40,9 +40,9 @@ export const createteam =  async(req,res,next)=> {
 
 
 
-        cron.schedule(settings[req.body.settings], () => {
-            console.log('contibute every minute');
-        });
+        
+
+        cron.schedule(settings[req.body.settings],()=>scheduleJob(doc._id));
 
         return res.status(201).json({message:"sucessfully", data:doc});
     }
@@ -87,4 +87,18 @@ const joinTeam = (req,res)=>{
 const getOneteam = handleCRUD.getOneById(teamModel);
 
 const deleteOneteam = handleCRUD.deleteOneById (teamModel);
+
+
+const scheduleJob=(teamId)=>{
+console.log("team id is "+teamId)
+
+
+
+}
+
+
+
+
+
+
  export default {createteam,getAllteam, UpdateOneteam,UpdateOneteam,getOneteam,deleteOneteam,joinTeam }

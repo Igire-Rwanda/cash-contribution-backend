@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const contibutionSchema = new mongoose.Schema(
+const contributionSchema = new mongoose.Schema(
   {
 
     UserId: {
@@ -16,16 +16,14 @@ const contibutionSchema = new mongoose.Schema(
       },
       status:{
         type:String,
-        enum:["pending","accept","cancel"],
-        default:"accept"
-       },
-    isActive: { 
-      type: Boolean, 
-      default: true},
-  },
-  { timestamps: true }
+        enum:["pending","success","failed"],
+        default:"pending"
+      },
+       { timestamps: true 
+      },
+  };
 );
 
-const participant= mongoose.model("teamMembers", contibutionSchema);
+const participant= mongoose.model("contributions", contributionSchema);
 
 export default contribution;

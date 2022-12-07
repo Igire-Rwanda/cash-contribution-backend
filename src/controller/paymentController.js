@@ -23,4 +23,3 @@ export const initiatePayment=async(req,res)=>{
     const response= await axios.post("https://api.flutterwave.com/v3/payments",paymentObj,{headers:{"Authorization":"Bearer FLWSECK_TEST-064a309f6bb775864187112f12220b1a-X"}})
     return res.send(response.data);
 }
-

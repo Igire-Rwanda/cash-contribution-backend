@@ -12,3 +12,4 @@ router.get('/:id',teamController.getOneteam);
 router.get('/join/:id',checkToken,teamController.joinTeam);
 export default router;
 
+
