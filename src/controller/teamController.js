@@ -60,7 +60,14 @@ const UpdateOneteam = handleCRUD.updateOneById (teamModel);
 const getOneteam = async(req,res)=>{
 const  getOneById = await Participant.find({TeamId:req.params.id}).populate("UserId");
 return res.status(200).send(getOneById)
+
+
 };
+
+const getAllteam = async(req,res) => {
+    const getAll= await Participant.find({UserId:req.userId}).populate("TeamId","TeamName");
+    return res.status(200).send(getAll);
+    }
 
 //const getOneteam = handleCRUD.getOneById (teamModel);
 const deleteOneteam = handleCRUD.deleteOneById (teamModel);
