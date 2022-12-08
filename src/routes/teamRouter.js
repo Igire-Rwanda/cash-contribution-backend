@@ -9,5 +9,9 @@ router.patch('/:id',teamController.UpdateOneteam);
 router.delete('/:id',teamController.deleteOneteam);
 router.get('/:id',teamController.getOneteam);
 router.get('/contributions/:id',teamController.getAllContributions)
+router.put('/contributions/:id',teamController.updateContribution)
+
+
+
 
 export default router;

@@ -61,6 +61,11 @@ const getAllteam = async(req,res) => {
         
         }
 
+    const updateContribution = async(req,res) => {
+        const update= await Contribution.findOneAndUpdate({_id:req.params.id},{status:"success"});
+        return res.status(200).send(update);
+    }     
+
 
 const UpdateOneteam = handleCRUD.updateOneById (teamModel);
 const getOneteam = async(req,res)=>{
@@ -94,4 +99,4 @@ const makeSchedule= async(teamId,amount)=>{
 
 //const getOneteam = handleCRUD.getOneById (teamModel);
 const deleteOneteam = handleCRUD.deleteOneById (teamModel);
- export default {createteam,getAllteam,getAllContributions, UpdateOneteam,UpdateOneteam,getOneteam,deleteOneteam,}
+ export default {createteam,getAllteam,getAllContributions,updateContribution, UpdateOneteam,UpdateOneteam,getOneteam,deleteOneteam,}
