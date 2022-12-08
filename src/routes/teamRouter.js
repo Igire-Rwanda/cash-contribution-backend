@@ -10,6 +10,7 @@ router.delete('/:id',teamController.deleteOneteam);
 router.get('/:id',teamController.getOneteam);
 router.get('/contributions/:id',teamController.getAllContributions)
 router.put('/contributions/:id',teamController.updateContribution)
+router.get('/join/:id',checkToken,teamController.joinTeam);
 
 
 

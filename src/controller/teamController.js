@@ -64,7 +64,15 @@ const getAllteam = async(req,res) => {
     const updateContribution = async(req,res) => {
         const update= await Contribution.findOneAndUpdate({_id:req.params.id},{status:"success"});
         return res.status(200).send(update);
-    }     
+    }   
+    const joinTeam = (req,res)=>{
+
+      const  teamMember= new Participant({TeamId:req.params.id,UserId:req.userId});
+      teamMember.save();
+       
+       return res.json({message:"you have joined  the team"});
+          
+   }  
 
 
 const UpdateOneteam = handleCRUD.updateOneById (teamModel);
@@ -99,4 +107,4 @@ const makeSchedule= async(teamId,amount)=>{
 
 //const getOneteam = handleCRUD.getOneById (teamModel);
 const deleteOneteam = handleCRUD.deleteOneById (teamModel);
- export default {createteam,getAllteam,getAllContributions,updateContribution, UpdateOneteam,UpdateOneteam,getOneteam,deleteOneteam,}
+ export default {createteam,getAllteam,getAllContributions,updateContribution, UpdateOneteam,UpdateOneteam,getOneteam,deleteOneteam,joinTeam}
