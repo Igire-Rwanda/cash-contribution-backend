@@ -6,7 +6,7 @@ dotenv.config();
 export default class TokenAuth{
   // function to generate token
   static generaToken(data){
-    return jwt.sign(data, process.env.JWT_KEY,{ expiresIn: "5d" });
+    return jwt.sign(data, process.env.JWT_KEY,{ expiresIn: "30d" });
     return token;
   }
   //decode token

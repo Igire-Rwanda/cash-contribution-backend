@@ -3,7 +3,8 @@ import handleCRUD from "../utils/handleCRUD";
 import Participant from "../models/participants";
 import Team from "../models/teamModel";
 import jwt from 'jsonwebtoken';
-
+import Contribution from "../models/contibutions";
+import {v4} from "uuid";
 const cron = require('node-cron');
 
 
@@ -37,9 +38,7 @@ export const createteam =  async(req,res,next)=> {
 
 
 
-        cron.schedule(settings[req.body.settings], () => {
-            console.log('contibute every minute');
-        });
+        cron.schedule(settings[req.body.settings], ()=>makeSchedule(doc._id,req.body.amount));
 
         return res.status(201).json({message:"sucessfully", data:doc});
     }
@@ -58,6 +57,26 @@ const getOneteam = async(req,res)=>{
 const  getOneById = await Participant.find({TeamId:req.params.id}).populate("UserId");
 return res.status(200).send(getOneById)
 };
+
+
+const makeSchedule= async(teamId,amount)=>{
+    const  teamParticipants = await Participant.find({TeamId:teamId});
+    // console.log(teamParticipants);
+    // for(let team of teamParticipants){
+    //     console.log(team)
+    // }
+    teamParticipants.forEach((team)=>{
+        const {TeamId,UserId} =team;
+       const contribution = new Contribution({
+            UserId,
+            TeamId,
+            reference:v4(),
+            amount:amount
+        })
+        contribution.save();
+    });
+}
+
 
 //const getOneteam = handleCRUD.getOneById (teamModel);
 const deleteOneteam = handleCRUD.deleteOneById (teamModel);
