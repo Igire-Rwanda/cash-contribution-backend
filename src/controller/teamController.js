@@ -1,6 +1,7 @@
 import teamModel from "../models/teamModel";
 import handleCRUD from "../utils/handleCRUD";
 import Participant from "../models/participants";
+// import Contribution from "../models/contibutions";
 import Team from "../models/teamModel";
 import jwt from 'jsonwebtoken';
 import Contribution from "../models/contibutions";
@@ -52,6 +53,15 @@ const getAllteam = async(req,res) => {
     const getAll= await Participant.find({UserId:req.userId}).populate("TeamId","TeamName");
     return res.status(200).send(getAll);
     }
+
+    const getAllContributions = async(req,res) => {
+        const getAll= await Contribution.find({TeamId:req.params.id}).populate("UserId")
+        return res.status(200).send(getAll);
+
+        
+        }
+
+
 const UpdateOneteam = handleCRUD.updateOneById (teamModel);
 const getOneteam = async(req,res)=>{
 const  getOneById = await Participant.find({TeamId:req.params.id}).populate("UserId");
@@ -75,9 +85,13 @@ const makeSchedule= async(teamId,amount)=>{
         })
         contribution.save();
     });
+
+
+
+   
 }
 
 
 //const getOneteam = handleCRUD.getOneById (teamModel);
 const deleteOneteam = handleCRUD.deleteOneById (teamModel);
- export default {createteam,getAllteam, UpdateOneteam,UpdateOneteam,getOneteam,deleteOneteam }
+ export default {createteam,getAllteam,getAllContributions, UpdateOneteam,UpdateOneteam,getOneteam,deleteOneteam,}
